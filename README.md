@@ -3,7 +3,7 @@ Generates an RSA key pair and asks you to crack it. Made to create practice ques
 
 # How to use
 Install rust if you don't already have it.
-Clone this repository with `git clone https://github.com/peterc-s/rsa-gen`
+Clone this repository with `git clone https://github.com/peterc-s/rsa-gen`.
 `cd` into the cloned repository.
 `cargo run --release`
 
