@@ -4,7 +4,7 @@ use num::{BigUint, BigInt, bigint::RandomBits};
 use std::io::stdin;
 
 fn main() {
-    println!("Enter an approximate number of bits p and q should use: ");
+    println!("Enter an maximum number of bits p and q should use: ");
     let mut num_bits_str = String::new();
     stdin().read_line(&mut num_bits_str).expect("Input IO error.");
     let num_bits: u64 = num_bits_str.trim().parse::<u64>().expect("Invalid input.");
@@ -13,6 +13,13 @@ fn main() {
     let keys = KeyPair::generate(num_bits);
     println!("Generated!");
  
+    // was going to add encrypted_string and an option
+    // but haven't. check out the rng mod.rs for
+    // functions that allow you to encrypt and decrypt
+    // strings - if you use a small number of bits for
+    // p and q it will probably break if the ascii
+    // character set exceeds the size of the resulting
+    // n.
     encrypted_number(keys, num_bits);
 }
 
