@@ -108,33 +108,35 @@ fn mod_inv(n: &BigInt, p: &BigInt) -> BigInt {
     inv
 }
 
-pub fn encrypt(plaintext: &str, public_key: &PublicKey) -> Vec<BigInt> {
-    // get the string as bytes,
-    // then for each byte raise it to e and mod n
-    plaintext.bytes()
-        .map(|b| BigInt::from(b).modpow(&public_key.e, &public_key.n))
-        .collect()
-}
+// insecure - doesn't chunk text or anything
+// pub fn encrypt(plaintext: &str, public_key: &PublicKey) -> Vec<BigInt> {
+//     // get the string as bytes,
+//     // then for each byte raise it to e and mod n
+//     plaintext.bytes()
+//         .map(|b| BigInt::from(b).modpow(&public_key.e, &public_key.n))
+//         .collect()
+// }
 
 pub fn encrypt_num(num: BigInt, public_key: &PublicKey) -> BigInt {
     BigInt::from(num).modpow(&public_key.e, &public_key.n)
 }
 
-pub fn decrypt(ciphertext: &Vec<BigInt>, key_pair: &KeyPair) -> String {
-    // for each character in the ciphertext,
-    // raise to d and mod n,
-    // cast to u32,
-    // cast to char,
-    // collect into strng.
-    ciphertext.iter()
-        .map(|c| {
-            char::from_u32(c.modpow(&key_pair.private.d, &key_pair.public.n)
-                .to_u32()
-                .unwrap())
-                .unwrap()
-        })
-        .collect::<String>()
-}
+// insecure - doesn't chunk text or anything
+// pub fn decrypt(ciphertext: &Vec<BigInt>, key_pair: &KeyPair) -> String {
+//     // for each character in the ciphertext,
+//     // raise to d and mod n,
+//     // cast to u32,
+//     // cast to char,
+//     // collect into strng.
+//     ciphertext.iter()
+//         .map(|c| {
+//             char::from_u32(c.modpow(&key_pair.private.d, &key_pair.public.n)
+//                 .to_u32()
+//                 .unwrap())
+//                 .unwrap()
+//         })
+//         .collect::<String>()
+// }
 
 pub fn decrypt_num(ciphertext: BigInt, key_pair: &KeyPair) -> BigInt {
     ciphertext.modpow(&key_pair.private.d, &key_pair.public.n)
