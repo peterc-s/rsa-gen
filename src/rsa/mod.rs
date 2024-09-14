@@ -1,4 +1,4 @@
-use num::{Integer, BigInt, BigUint, bigint::RandomBits, One, Zero, ToPrimitive};
+use num::{Integer, BigInt, BigUint, bigint::RandomBits, One, Zero};
 use rand::Rng;
 use num_prime::nt_funcs::is_prime;
 
